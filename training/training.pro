@@ -3,5 +3,5 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
-HEADERS += trainig.h
+HEADERS += training.h
 SOURCES += main.cpp training.cpp

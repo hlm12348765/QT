@@ -14,16 +14,16 @@
 	helpAction->setStatusTip(tr("Help"));						/* 设置状态提示 */
 
 	fileMenu = menuBar()->addMenu(tr("&File"));				/* 创建file菜单 */
-	fileMenu->addAction(openAction);
-	fileMenu->addAction(closeAction);
+    fileMenu->addAction(startAction);
+    fileMenu->addAction(stopAction);
 
 	helpMenu = menuBar()->addMenu(tr("&Help"));				/* 创建help菜单 */
-	helpMenu->addAction(aboutAction);
+    helpMenu->addAction(helpAction);
 
 	fileToolBar = addToolBar(tr("&File"));
-	fileToolBar->addAction(openAction);
-	fileToolBar->addAction(closeAction);
-	fileToolBar->addAction(aboutAction);
+    fileToolBar->addAction(startAction);
+    fileToolBar->addAction(stopAction);
+    fileToolBar->addAction(helpAction);
 
 	statusLabel = new QLabel;
 	statusLabel->setMinimumSize(statusLabel->sizeHint());
