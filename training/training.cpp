@@ -1,4 +1,4 @@
-/* xunlian.cpp */
+/* training.cpp */
 #include <QtGui>
 #include <QApplication>
 
