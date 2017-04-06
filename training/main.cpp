@@ -1,7 +1,7 @@
 /* main.cpp */
 
 #include <QApplication>
-#include "xunlian.h"
+#include "training.h"
 
 int main(int argc, char *argv[])
 {
