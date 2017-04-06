@@ -9,6 +9,6 @@ int main(int argc, char *argv[])
 	window->setWindowTitle("模拟训练");
 	QTextCodec::setCodecForCStrings(QTextCodec::codeForName("UTF-8"));
 	
-	window->show();
-	return app.exec();
-}	
+
+}
+
