@@ -31,8 +31,7 @@
 *.out
 *.app
 
-#gedit
+
 *~
 
-#git creator
-*.user
+
