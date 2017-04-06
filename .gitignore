@@ -33,3 +33,6 @@
 
 #gedit
 *~
+
+#git creator
+*.user
