@@ -1,5 +1,5 @@
 #include<QtGui/QtGui>
-#include"CImage.h"
+#include"CImage_DaZhengGUO.h"
 
 int main(int argc,char*argv[])
 {

@@ -1,6 +1,6 @@
 #include <QtGui/QtGui>
 
-#include "CImage.h"
+#include "CImage_TongHuaXI.h"
 
 CImage::CImage(QWidget  *parent):QDialog(parent)
 {
