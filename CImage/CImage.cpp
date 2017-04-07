@@ -21,7 +21,7 @@ CImage::CImage(QWidget  *parent):QDialog(parent)
 
     connect(manager, SIGNAL(finished(QNetworkReply*)),
                 this, SLOT(replyFinished(QNetworkReply*)));
-    manager->get(QNetworkRequest(QUrl("https://rawfile.loveliv.es/assets/image/units/u_rankup_navi_42001003.png")));
+    manager->get(QNetworkRequest(QUrl("https://rawfile.loveliv.es/assets/image/units/u_rankup_navi_32007009.png")));
 }
 
 

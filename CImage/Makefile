@@ -74,9 +74,9 @@ DIST          = /usr/share/qt4/mkspecs/common/unix.conf \
 		/usr/share/qt4/mkspecs/features/lex.prf \
 		/usr/share/qt4/mkspecs/features/include_source_dir.prf \
 		CImage.pro
-QMAKE_TARGET  = CImage
+QMAKE_TARGET  = CImage_TongHuaXI
 DESTDIR       = 
-TARGET        = CImage
+TARGET        = CImage_TongHuaXI
 
 first: all
 ####### Implicit rules
