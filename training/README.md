@@ -1,2 +1,2 @@
 # QT
-This is a QT project for SLATA2000 to be used for human-computer interaction.
+This is a QT project for SLAT2000 to be used for human-computer interaction.
