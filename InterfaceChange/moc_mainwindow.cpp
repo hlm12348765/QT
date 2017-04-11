@@ -35,15 +35,15 @@ static const uint qt_meta_data_MainWindow[] = {
       29,   11,   11,   11, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      41,   11,   11,   11, 0x08,
-      56,   11,   11,   11, 0x08,
-      80,   11,   11,   11, 0x08,
+      39,   11,   11,   11, 0x08,
+      54,   11,   11,   11, 0x08,
+      78,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0dlgshow()\0quit()\0labelshow()\0"
+    "MainWindow\0\0dlgshow()\0quit()\0trashow()\0"
     "receivelogin()\0on_pushButton_clicked()\0"
     "on_pushButton_2_clicked()\0"
 };
@@ -56,7 +56,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->dlgshow(); break;
         case 1: _t->quit(); break;
-        case 2: _t->labelshow(); break;
+        case 2: _t->trashow(); break;
         case 3: _t->receivelogin(); break;
         case 4: _t->on_pushButton_clicked(); break;
         case 5: _t->on_pushButton_2_clicked(); break;
@@ -118,7 +118,7 @@ void MainWindow::quit()
 }
 
 // SIGNAL 2
-void MainWindow::labelshow()
+void MainWindow::trashow()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, 0);
 }
