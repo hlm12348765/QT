@@ -26,6 +26,7 @@ private slots:
 signals:  
     void dlgshow();//显示登录对话框信号  
     void quit();//退出信号
+    void trashow();
 };
 
 #endif // MAINWINDOW_H

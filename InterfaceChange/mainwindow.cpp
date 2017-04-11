@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,5 +30,7 @@ void MainWindow::on_pushButton_clicked()
   
 void MainWindow::on_pushButton_2_clicked()  
 {  
-    emit quit();//发射退出信号  
+   // emit quit();//发射退出信号
+    this ->hide();
+    emit trashow();
 }  

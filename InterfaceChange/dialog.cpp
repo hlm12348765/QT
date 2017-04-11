@@ -2,6 +2,7 @@
 #include "ui_dialog.h"
 #include <QHBoxLayout>
 #include <mainwindow.h>
+#include <QLabel>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -28,7 +29,7 @@ void Dialog::receiveshow()
   
 }  
   
-void Dialog::on_pushButton_2_clicked()
-{  
-    emit quit();//发射退出信号  
-}  
+//void Dialog::on_pushButton_2_clicked()
+//{
+ //   emit quit();//发射退出信号
+//}

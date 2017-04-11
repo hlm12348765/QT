@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "dialog.h"
+#include "../InterfaceChange/dialog.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'dialog.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
@@ -22,26 +22,25 @@ static const uint qt_meta_data_Dialog[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
        8,    7,    7,    7, 0x05,
-      25,    7,    7,    7, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      32,    7,    7,    7, 0x08,
-      56,    7,    7,    7, 0x08,
+      25,    7,    7,    7, 0x08,
+      49,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Dialog[] = {
-    "Dialog\0\0showmainwindow()\0quit()\0"
+    "Dialog\0\0showmainwindow()\0"
     "on_pushButton_clicked()\0receiveshow()\0"
 };
 
@@ -52,9 +51,8 @@ void Dialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Dialog *_t = static_cast<Dialog *>(_o);
         switch (_id) {
         case 0: _t->showmainwindow(); break;
-        case 1: _t->quit(); break;
-        case 2: _t->on_pushButton_clicked(); break;
-        case 3: _t->receiveshow(); break;
+        case 1: _t->on_pushButton_clicked(); break;
+        case 2: _t->receiveshow(); break;
         default: ;
         }
     }
@@ -93,9 +91,9 @@ int Dialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }
@@ -104,11 +102,5 @@ int Dialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void Dialog::showmainwindow()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, 0);
-}
-
-// SIGNAL 1
-void Dialog::quit()
-{
-    QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }
 QT_END_MOC_NAMESPACE
