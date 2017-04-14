@@ -9,6 +9,7 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("SLAT2000"));
 }
 
 Dialog::~Dialog()

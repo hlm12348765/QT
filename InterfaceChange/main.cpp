@@ -3,6 +3,7 @@
 #include "dialog.h"
 #include <QLabel>
 #include "training.h"
+#include <QTextCodec>
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,6 @@ int main(int argc, char *argv[])
     QObject::connect(&w,SIGNAL(dlgshow()),&dlg,SLOT(receiveshow()));  
     QObject::connect(&w,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
  //   QObject::connect(&dlg,SIGNAL(quit()),&a,SLOT(quit()));
-
+      QTextCodec::setCodecForTr(QTextCodec::codecForName("GB2312"));
     return a.exec();
 }

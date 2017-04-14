@@ -7,6 +7,7 @@ Training::Training(QWidget *parent) :
     ui(new Ui::Training)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("SLAT2000"));
 }
 
 Training::~Training()
