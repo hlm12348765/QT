@@ -9,13 +9,20 @@ Training::Training(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle(tr("SLAT2000"));
-    QImage *image=new QImage("/home/nie/mygit/QT/InterfaceChange/logo.png");  
-  
-    QLabel *label=new QLabel(this);  
-    label->setGeometry(0,0,520,100);
-    label->setPixmap(QPixmap::fromImage(*image));  
-    //label->setPixmap(QPixmap("/home/nie/mygit/QT/InterfaceChange/logo.png"));  
-    label->show(); 
+    //setWindowState(Qt::WindowMaximized)
+    QImage *image1=new QImage("/home/nie/mygit/QT/InterfaceChange/logo.png");
+    QLabel *label1=new QLabel(this);
+    label1->setGeometry(0,0,520,100);
+    label1->setPixmap(QPixmap::fromImage(*image1));
+    //label1->setPixmap(QPixmap("/home/nie/mygit/QT/InterfaceChange/logo.png"));
+    label1->show();
+
+    QImage *image2=new QImage("/home/nie/mygit/QT/InterfaceChange/picture.png");
+    QLabel *label2=new QLabel(this);
+    label2->setGeometry(0,100,150,200);
+    label2->setPixmap(QPixmap::fromImage(*image2));
+    //label2->setPixmap(QPixmap("/home/nie/mygit/QT/InterfaceChange/picture.png"));
+    label2->show();
 
 }
 

@@ -10,8 +10,8 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle(tr("SLAT2000"));
-    QImage *image=new QImage("/home/nie/mygit/QT/InterfaceChange/logo.png");  
-  
+    //setWindowState(Qt::WindowMaximized);
+    QImage *image=new QImage("/home/nie/mygit/QT/InterfaceChange/logo.png");
     QLabel *label=new QLabel(this);  
     label->setGeometry(0,0,520,100);
     label->setPixmap(QPixmap::fromImage(*image));  

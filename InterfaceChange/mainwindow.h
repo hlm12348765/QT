@@ -19,7 +19,7 @@ private:
     Ui::MainWindow *ui;
 private slots:  
     void receivelogin();//与login中发射的信号关联的槽函数  
-    void on_pushButton_clicked();//与relogin的click()关联的槽函数  
+    //void on_pushButton_clicked();//与relogin的click()关联的槽函数
   
     void on_pushButton_2_clicked();//与quit的click()关联的槽函数  
   

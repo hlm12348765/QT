@@ -31,7 +31,7 @@ public:
         Training->resize(520, 300);
         label = new QLabel(Training);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(210, 120, 100, 17));
+        label->setGeometry(QRect(200, 120, 120, 17));
 
         retranslateUi(Training);
 
