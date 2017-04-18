@@ -2,6 +2,7 @@
 #define TRAINING_H
 
 #include <QWidget>
+#include <QCloseEvent>
 
 namespace Ui {
 class Training;
@@ -20,6 +21,9 @@ private slots:
 
 private:
     Ui::Training *ui;
+
+private:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // TRAINING_H

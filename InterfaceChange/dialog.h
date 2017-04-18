@@ -2,6 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class Dialog;
@@ -25,6 +26,9 @@ signals:
 
 private:
     Ui::Dialog *ui;
+
+private:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // DIALOG_H

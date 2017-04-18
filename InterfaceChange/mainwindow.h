@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QCloseEvent>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private:
+    void closeEvent(QCloseEvent *event);
+
 private slots:  
     void receivelogin();//与login中发射的信号关联的槽函数  
     //void on_pushButton_clicked();//与relogin的click()关联的槽函数
