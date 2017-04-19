@@ -13,11 +13,11 @@ Dialog::Dialog(QWidget *parent) :
     //setWindowFlags(windowFlags() &~ Qt::WindowCloseButtonHint);
     //setWindowState(Qt::WindowMaximized);
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
-    QImage *image=new QImage("/opt/qt/logo.png");
+    //QImage *image=new QImage("/opt/qt/logo.png");
     QLabel *label=new QLabel(this);  
     label->setGeometry(0,0,480,100);
-    label->setPixmap(QPixmap::fromImage(*image));  
-    //label->setPixmap(QPixmap("/home/nie/mygit/QT/InterfaceChange/logo.png"));  
+   // label->setPixmap(QPixmap::fromImage(*image));
+    label->setPixmap(QPixmap("/opt/qt/logo.png"));
     label->show(); 
 }
 
