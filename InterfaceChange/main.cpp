@@ -17,6 +17,6 @@ int main(int argc, char *argv[])
     //QObject::connect(&w,SIGNAL(dlgshow()),&dlg,SLOT(receiveshow()));
     QObject::connect(&w,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
  //   QObject::connect(&dlg,SIGNAL(quit()),&a,SLOT(quit()));
- //     QTextCodec::setCodecForTr(QTextCodec::codecForName("GB2312"));
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
     return a.exec();
 }

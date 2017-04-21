@@ -3,6 +3,11 @@
 
 #include <QWidget>
 #include <QCloseEvent>
+#include <QtNetwork/QTcpSocket>
+#include <QtNetwork/QTcpServer>
+#include <QGridLayout>
+#include <QTextEdit>
+#include <QPushButton>
 
 namespace Ui {
 class Training;
@@ -16,6 +21,11 @@ public:
     explicit Training(QWidget *parent = 0);
     ~Training();
 
+public slots:
+    void send_slot();
+    void recv_slot();
+    void connect_slot();
+
 private slots:
     void receiveshow();
 
@@ -24,6 +34,13 @@ private:
 
 private:
     void closeEvent(QCloseEvent *event);
+
+private:
+    QTcpSocket *tcpSocket;
+    QGridLayout *layout;
+    QTextEdit *textEdit;
+    QPushButton *connectButton;
+    QPushButton *sendButton;
 };
 
 #endif // TRAINING_H

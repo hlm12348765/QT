@@ -2,6 +2,7 @@
 #include "training.h"
 #include "ui_training.h"
 #include <QImage>
+#include <QApplication>
 
 Training::Training(QWidget *parent) :
     QWidget(parent),
@@ -12,6 +13,10 @@ Training::Training(QWidget *parent) :
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
     //setWindowState(Qt::WindowMaximized);
 
+    connectButton=new QPushButton("connect");
+    sendButton=new QPushButton("send");
+    textEdit=new QTextEdit();
+
     //QImage *image1=new QImage("/opt/qt/logo.png");
     QLabel *label1=new QLabel(this);
     label1->setGeometry(0,0,480,100);
@@ -20,19 +25,32 @@ Training::Training(QWidget *parent) :
     label1->show();
 
     //QImage *image2=new QImage("/opt/qt/picture.png");
-    QLabel *label2=new QLabel(this);
-    label2->setGeometry(0,100,120,172);
+    //QLabel *label2=new QLabel(this);
+    //label2->setGeometry(0,100,120,172);
     //label2->setPixmap(QPixmap::fromImage(*image2));
-    label2->setPixmap(QPixmap("/opt/qt/picture.png"));
-    label2->show();
+    //label2->setPixmap(QPixmap("/opt/qt/picture.png"));
+    //label2->show();
+
+    layout=new QGridLayout();
+    layout -> addWidget(textEdit,101,1,172,120);
+    layout -> addWidget(connectButton,180,120,17,120);
+    layout -> addWidget(sendButton,180,160,17,120);
+    setLayout(layout);
 
     //QImage *image3=new QImage("/opt/qt/xinxi.png");
-    QLabel *label3=new QLabel(this);
-    label3->setGeometry(360,100,120,172);
+    //QLabel *label3=new QLabel(this);
+    //label3->setGeometry(360,100,120,172);
     //label3->setPixmap(QPixmap::fromImage(*image3));
-    label3->setPixmap(QPixmap("/opt/qt/xinxi.png"));
-    label3->show();
+    //label3->setPixmap(QPixmap("/opt/qt/xinxi.png"));
+    //label3->show();
 
+    sendButton -> setDisabled(false);
+    tcpSocket =new QTcpSocket(this);
+
+
+    connect(connectButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
+    connect(sendButton,SIGNAL(clicked()),this,SLOT(send_slot()));
+    connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 
 }
 
@@ -49,4 +67,23 @@ void Training::closeEvent(QCloseEvent *event)
 void Training::receiveshow()
 {
     this ->show();
+}
+
+void Training::connect_slot()
+{
+ tcpSocket -> connectToHost("172.17.32.199",22);
+}
+
+void Training::send_slot()
+{
+ QString str = textEdit -> toPlainText();
+ tcpSocket -> write(qPrintable(str));
+}
+
+void Training::recv_slot()
+{
+ 
+ QByteArray byte;
+ byte = tcpSocket -> readAll();
+ textEdit -> setPlainText(QString(byte));
 }

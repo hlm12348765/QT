@@ -39,10 +39,10 @@ void Dialog::on_pushButton_clicked()
   
   
 void Dialog::receiveshow()
-{  
-    this->show();//显示登录对话框  
+{
+    this->show();//显示登录对话框
   
-}  
+}
   
 //void Dialog::on_pushButton_2_clicked()
 //{
