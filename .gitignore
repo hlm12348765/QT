@@ -36,4 +36,8 @@
 tcp/
 build*/
 
+*.png
 
+InterfaceChange
+
+*.user*
