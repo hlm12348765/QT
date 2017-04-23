@@ -1,4 +1,3 @@
-#include "mainwindow.h"
 #include <QApplication>
 #include "dialog.h"
 #include <QLabel>
@@ -8,15 +7,15 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    //MainWindow w;
     Training tra;
     Dialog dlg;
     dlg.show();
-//信号与槽之间进行关联  
-    QObject::connect(&dlg,SIGNAL(showmainwindow()),&w,SLOT(receivelogin()));  
+
+    //QObject::connect(&dlg,SIGNAL(showmainwindow()),&w,SLOT(receivelogin()));
     //QObject::connect(&w,SIGNAL(dlgshow()),&dlg,SLOT(receiveshow()));
-    QObject::connect(&w,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
- //   QObject::connect(&dlg,SIGNAL(quit()),&a,SLOT(quit()));
+    QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
+    //QObject::connect(&dlg,SIGNAL(quit()),&a,SLOT(quit()));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
     return a.exec();
 }

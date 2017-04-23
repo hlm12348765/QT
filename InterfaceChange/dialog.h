@@ -16,13 +16,14 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
-private slots:  
-    void on_pushButton_clicked();//与login关联的槽函数  
-    void receiveshow();//与relogin中发射的信号关联的槽函数  
-   // void on_pushButton_2_clicked();//与exit关联的槽函数
-signals:  
-    void showmainwindow();//显示主窗口信号  
-   // void quit();//退出信号
+private slots:
+    void on_pushButton_clicked();
+    void receiveshow(); 
+    //void on_pushButton_2_clicked();
+signals:
+    void showmainwindow();
+    void trashow();
+    //void quit();
 
 private:
     Ui::Dialog *ui;

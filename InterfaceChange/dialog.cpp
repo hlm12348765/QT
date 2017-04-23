@@ -1,7 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QHBoxLayout>
-#include <mainwindow.h>
+#include "training.h"
 #include <QLabel>
 
 Dialog::Dialog(QWidget *parent) :
@@ -14,11 +14,11 @@ Dialog::Dialog(QWidget *parent) :
     //setWindowState(Qt::WindowMaximized);
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
     //QImage *image=new QImage("/opt/qt/logo.png");
-    QLabel *label=new QLabel(this);  
+    QLabel *label=new QLabel(this);
     label->setGeometry(0,0,480,100);
-   // label->setPixmap(QPixmap::fromImage(*image));
+    //label->setPixmap(QPixmap::fromImage(*image));
     label->setPixmap(QPixmap("/opt/qt/logo.png"));
-    label->show(); 
+    label->show();
 }
 
 Dialog::~Dialog()
@@ -32,19 +32,19 @@ void Dialog::closeEvent(QCloseEvent *event)
 }
 
 void Dialog::on_pushButton_clicked()
-{  
-    this->hide();//隐藏登录对话框  
-    emit showmainwindow();//显示主窗口  
-}  
-  
-  
+{
+    this->hide();
+    emit trashow();
+}
+
+
 void Dialog::receiveshow()
 {
-    this->show();//显示登录对话框
-  
+    this->show();
+
 }
-  
+
 //void Dialog::on_pushButton_2_clicked()
 //{
- //   emit quit();//发射退出信号
+ //   emit quit();
 //}
