@@ -50,9 +50,9 @@ Training::Training(QWidget *parent) :
     tcpSocket = new QTcpSocket(this);
 
 
-    connect(connectButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
+    //connect(connectButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
     connect(sendButton,SIGNAL(clicked()),this,SLOT(send_slot()));
-    connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
+    //connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 
 }
 
@@ -71,21 +71,20 @@ void Training::receiveshow()
     this -> show();
 }
 
-void Training::connect_slot()
-{
- tcpSocket -> connectToHost("172.17.32.199",22);
-}
+//void Training::connect_slot()
+//{
+//    tcpSocket -> connectToHost("172.17.32.199",22);
+//}
 
 void Training::send_slot()
 {
- QString str = textEdit -> toPlainText();
- tcpSocket -> write(qPrintable(str));
+    QString str = textEdit -> toPlainText();
+    tcpSocket -> write(qPrintable(str));
 }
 
 void Training::recv_slot()
 {
-
- QByteArray byte;
- byte = tcpSocket -> readAll();
- textEdit -> setPlainText(QString(byte));
+    QByteArray byte;
+    byte = tcpSocket -> readAll();
+    textEdit -> setPlainText(QString(byte));
 }

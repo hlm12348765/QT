@@ -1,12 +1,22 @@
-/* main.cpp */
-
 #include <QApplication>
+#include "dialog.h"
+#include <QLabel>
 #include "training.h"
+#include <QTextCodec>
 
 int main(int argc, char *argv[])
 {
-	QApplication app(argc, argv);
-	MainWindow main;						/* 创建自定义的MainWindow对象 */
-	main.show();							/* 使对象显示 */
-	return app.exec();
+    QApplication a(argc, argv);
+    //MainWindow w;
+    Training tra;
+    Dialog dlg;
+    dlg.show();
+
+    //QObject::connect(&dlg,SIGNAL(showmainwindow()),&w,SLOT(receivelogin()));
+    //QObject::connect(&w,SIGNAL(dlgshow()),&dlg,SLOT(receiveshow()));
+    QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
+    QObject::connect(&dlg,SIGNAL(recv_start()),&tra,SLOT(recv_slot()));
+    //QObject::connect(&dlg,SIGNAL(quit()),&a,SLOT(quit()));
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
+    return a.exec();
 }

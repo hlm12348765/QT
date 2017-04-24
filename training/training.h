@@ -1,32 +1,46 @@
-/* training.h */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef TRAINING_H
+#define TRAINING_H
 
-#include <QMainWindow>					/* 包含对QMainWindow的定义 */
+#include <QWidget>
+#include <QCloseEvent>
+#include <QtNetwork/QTcpSocket>
+#include <QtNetwork/QTcpServer>
+#include <QGridLayout>
+#include <QTextEdit>
+#include <QPushButton>
 
-class QAction;
-class QMenu;
-class QToolBar;
-class QLabel;
+namespace Ui {
+class Training;
+}
 
-class MainWindow : public QMainWindow		/* 声明MainWindow为QMainWindow的子类*/
+class Training : public QWidget
 {
-	Q_OBJECT;
+    Q_OBJECT
+
 public:
-	MainWindow(void);
-	~MainWindow(void);
+    explicit Training(QWidget *parent = 0);
+    ~Training();
+
+public slots:
+    void send_slot();
+    void recv_slot();
+    //void connect_slot();
+
+private slots:
+    void receiveshow();
 
 private:
-	QMenu   *fileMenu;					/* 文件菜单 */
-	QMenu   *helpMenu;				/* 帮助菜单 */
+    Ui::Training *ui;
 
-	QToolBar *fileToolBar;				/* 工具栏 */
+private:
+    void closeEvent(QCloseEvent *event);
 
-	QAction *startAction;					/* 开始动作 */
-	QAction *stopAction;					/* 结束动作 */
-	QAction *helpAction;				/* 帮助动作 */
-
-	QLabel  *statusLabel;
+private:
+    QTcpSocket *tcpSocket;
+    QGridLayout *layout;
+    QTextEdit *textEdit;
+    QPushButton *connectButton;
+    QPushButton *sendButton;
 };
 
-#endif
+#endif // TRAINING_H
