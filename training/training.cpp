@@ -13,8 +13,8 @@ Training::Training(QWidget *parent) :
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
     //setWindowState(Qt::WindowMaximized);
 
-    connectButton = new QPushButton("connect");
-    sendButton = new QPushButton("send");
+    //connectButton = new QPushButton("connect");
+    //sendButton = new QPushButton("send");
     textEdit = new QTextEdit();
 
     //QImage *image1=new QImage("/opt/qt/logo.png");
@@ -32,9 +32,9 @@ Training::Training(QWidget *parent) :
     //label2->show();
     layout = new QGridLayout();
     layout -> addWidget(label1,0,0,1,3);
-    layout -> addWidget(textEdit,1,0,2,2);
-    layout -> addWidget(connectButton,1,2);
-    layout -> addWidget(sendButton,2,2);
+    layout -> addWidget(textEdit,1,0,3,3);
+    //layout -> addWidget(connectButton,1,2);
+    //layout -> addWidget(sendButton,2,2);
     setLayout(layout);
     label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
     label1 -> show();
@@ -46,13 +46,14 @@ Training::Training(QWidget *parent) :
     //label3->setPixmap(QPixmap("/opt/qt/xinxi.png"));
     //label3->show();
 
-    sendButton -> setDisabled(false);
+    //sendButton -> setDisabled(false);
     tcpSocket = new QTcpSocket(this);
-
+    //tcpSocket_connect_HBJ -> abort();
+    //tcpSocket -> connectToHost("172.17.32.199",22);
 
     //connect(connectButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
-    connect(sendButton,SIGNAL(clicked()),this,SLOT(send_slot()));
-    //connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
+    //connect(sendButton,SIGNAL(clicked()),this,SLOT(send_slot()));
+    connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 
 }
 
@@ -71,16 +72,17 @@ void Training::receiveshow()
     this -> show();
 }
 
-//void Training::connect_slot()
-//{
-//    tcpSocket -> connectToHost("172.17.32.199",22);
-//}
-
-void Training::send_slot()
+void Training::connect_slot()
 {
-    QString str = textEdit -> toPlainText();
-    tcpSocket -> write(qPrintable(str));
+    //tcpSocket_connect_HBJ -> abort();
+    tcpSocket -> connectToHost("172.17.32.199",22);
 }
+
+//void Training::send_slot()
+//{
+//    QString str = textEdit -> toPlainText();
+//    tcpSocket -> write(qPrintable(str));
+//}
 
 void Training::recv_slot()
 {

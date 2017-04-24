@@ -28,9 +28,8 @@ Dialog::Dialog(QWidget *parent) :
     label -> setPixmap(QPixmap("/opt/qt/logo.png"));
 
     tcpSocket = new QTcpSocket(this);
-    tcpSocket -> connectToHost("172.17.32.199",22);
 
-    connect(loginButton,SIGNAL(clicked()),this,SLOT(login_slot()));
+    connect(loginButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
 }
 
@@ -57,15 +56,21 @@ void Dialog::receiveshow()
 
 }
 
-void Dialog::login_slot()
+//void Dialog::login_slot()
+//{
+//     this -> hide();
+//     emit trashow();
+//}
+
+void Dialog::connect_slot()
 {
-     this -> hide();
-     emit trashow();
+    tcpSocket -> connectToHost("172.17.32.199",22);
 }
 
 void Dialog::finish_slot()
 {
-     emit recv_start();
+     this -> hide();
+     emit trashow();
 }
 //void Dialog::on_pushButton_2_clicked()
 //{

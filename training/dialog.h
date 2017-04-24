@@ -21,8 +21,9 @@ public:
     ~Dialog();
 
 public slots:
-    void login_slot();
+    //void login_slot();
     void finish_slot();
+    void connect_slot();
 
 private slots:
     //void on_pushButton_clicked();

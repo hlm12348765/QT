@@ -22,9 +22,9 @@ public:
     ~Training();
 
 public slots:
-    void send_slot();
+    //void send_slot();
     void recv_slot();
-    //void connect_slot();
+    void connect_slot();
 
 private slots:
     void receiveshow();
@@ -37,10 +37,11 @@ private:
 
 private:
     QTcpSocket *tcpSocket;
+    QTcpSocket *tcpSocket_connect_HBJ;
     QGridLayout *layout;
     QTextEdit *textEdit;
-    QPushButton *connectButton;
-    QPushButton *sendButton;
+    //QPushButton *connectButton;
+    //QPushButton *sendButton;
 };
 
 #endif // TRAINING_H
