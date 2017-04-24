@@ -8,21 +8,21 @@ Training::Training(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Training)
 {
-    ui->setupUi(this);
+    ui -> setupUi(this);
     setWindowTitle(tr("SLAT2000"));
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
     //setWindowState(Qt::WindowMaximized);
 
-    connectButton=new QPushButton("connect");
-    sendButton=new QPushButton("send");
-    textEdit=new QTextEdit();
+    connectButton = new QPushButton("connect");
+    sendButton = new QPushButton("send");
+    textEdit = new QTextEdit();
 
     //QImage *image1=new QImage("/opt/qt/logo.png");
-    QLabel *label1=new QLabel(this);
-    label1->setGeometry(0,0,480,100);
+    QLabel *label1 = new QLabel(this);
+    //label1->setGeometry(0,0,480,100);
     //label1->setPixmap(QPixmap::fromImage(*image1));
-    label1->setPixmap(QPixmap("/opt/qt/logo.png"));
-    label1->show();
+    //label1->setPixmap(QPixmap("/opt/qt/logo.png"));
+    //label1->show();
 
     //QImage *image2=new QImage("/opt/qt/picture.png");
     //QLabel *label2=new QLabel(this);
@@ -30,12 +30,14 @@ Training::Training(QWidget *parent) :
     //label2->setPixmap(QPixmap::fromImage(*image2));
     //label2->setPixmap(QPixmap("/opt/qt/picture.png"));
     //label2->show();
-
-    layout=new QGridLayout();
-    layout -> addWidget(textEdit,101,1,172,120);
-    layout -> addWidget(connectButton,180,120,17,120);
-    layout -> addWidget(sendButton,180,160,17,120);
+    layout = new QGridLayout();
+    layout -> addWidget(label1,0,0,1,3);
+    layout -> addWidget(textEdit,1,0,2,2);
+    layout -> addWidget(connectButton,1,2);
+    layout -> addWidget(sendButton,2,2);
     setLayout(layout);
+    label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
+    label1 -> show();
 
     //QImage *image3=new QImage("/opt/qt/xinxi.png");
     //QLabel *label3=new QLabel(this);
@@ -45,7 +47,7 @@ Training::Training(QWidget *parent) :
     //label3->show();
 
     sendButton -> setDisabled(false);
-    tcpSocket =new QTcpSocket(this);
+    tcpSocket = new QTcpSocket(this);
 
 
     connect(connectButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
@@ -61,12 +63,12 @@ Training::~Training()
 
 void Training::closeEvent(QCloseEvent *event)
 {
-    event->ignore();
+    event -> ignore();
 }
 
 void Training::receiveshow()
 {
-    this ->show();
+    this -> show();
 }
 
 void Training::connect_slot()
@@ -82,7 +84,7 @@ void Training::send_slot()
 
 void Training::recv_slot()
 {
- 
+
  QByteArray byte;
  byte = tcpSocket -> readAll();
  textEdit -> setPlainText(QString(byte));

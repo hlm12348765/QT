@@ -1,6 +1,6 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-#include <QHBoxLayout>
+#include <QGridLayout>
 #include "training.h"
 #include <QLabel>
 
@@ -13,12 +13,21 @@ Dialog::Dialog(QWidget *parent) :
     //setWindowFlags(windowFlags() &~ Qt::WindowCloseButtonHint);
     //setWindowState(Qt::WindowMaximized);
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
-    //QImage *image=new QImage("/opt/qt/logo.png");
-    QLabel *label=new QLabel(this);
-    label->setGeometry(0,0,480,100);
+    //QImage *image = new QImage("/opt/qt/logo.png");
+
+    loginButton = new QPushButton("login");
+    QLabel *label = new QLabel(this);
+    //label->setGeometry(0,0,480,100);
     //label->setPixmap(QPixmap::fromImage(*image));
-    label->setPixmap(QPixmap("/opt/qt/logo.png"));
-    label->show();
+    //label->setPixmap(QPixmap("/opt/qt/logo.png"));
+    //label->show();
+    layout = new QGridLayout();
+    layout -> addWidget(label,0,0,1,3);
+    layout -> addWidget(loginButton,1,1);
+    setLayout(layout);
+    label -> setPixmap(QPixmap("/opt/qt/logo.png"));
+
+    connect(loginButton,SIGNAL(clicked()),this,SLOT(login_slot()));
 }
 
 Dialog::~Dialog()
@@ -28,22 +37,27 @@ Dialog::~Dialog()
 
 void Dialog::closeEvent(QCloseEvent *event)
 {
-    event->ignore();
+    event -> ignore();
 }
 
-void Dialog::on_pushButton_clicked()
-{
-    this->hide();
-    emit trashow();
-}
+//void Dialog::on_pushButton_clicked()
+//{
+//    this->hide();
+//    emit trashow();
+//}
 
 
 void Dialog::receiveshow()
 {
-    this->show();
+    this -> show();
 
 }
 
+void Dialog::login_slot()
+{
+     this -> hide();
+     emit trashow();
+}
 //void Dialog::on_pushButton_2_clicked()
 //{
  //   emit quit();

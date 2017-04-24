@@ -3,6 +3,10 @@
 
 #include <QDialog>
 #include <QCloseEvent>
+#include <QtNetwork/QTcpSocket>
+#include <QtNetwork/QTcpServer>
+#include <QGridLayout>
+#include <QPushButton>
 
 namespace Ui {
 class Dialog;
@@ -16,9 +20,12 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
+public slots:
+    void login_slot();
+
 private slots:
-    void on_pushButton_clicked();
-    void receiveshow(); 
+    //void on_pushButton_clicked();
+    void receiveshow();
     //void on_pushButton_2_clicked();
 signals:
     void showmainwindow();
@@ -27,6 +34,8 @@ signals:
 
 private:
     Ui::Dialog *ui;
+    QGridLayout *layout;
+    QPushButton *loginButton;
 
 private:
     void closeEvent(QCloseEvent *event);
