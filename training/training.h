@@ -8,17 +8,19 @@
 #include <QGridLayout>
 #include <QTextEdit>
 
-namespace Ui {
-class Training;
-}
+//namespace Ui {
+//class Training;
+//}
 
 class Training : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Training(QWidget *parent = 0);
-    ~Training();
+    //explicit Training(QWidget *parent = 0);
+    //~Training();
+    Training(QWidget *parent = 0);
+    virtual ~Training() {}
 
 public slots:
     void recv_slot();
@@ -27,8 +29,8 @@ public slots:
 private slots:
     void receiveshow();
 
-private:
-    Ui::Training *ui;
+//private:
+    //Ui::Training *ui;
 
 private:
     void closeEvent(QCloseEvent *event);

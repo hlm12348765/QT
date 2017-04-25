@@ -10,5 +10,4 @@ QT += network
 
 # Input
 HEADERS += dialog.h training.h
-FORMS += dialog.ui training.ui
 SOURCES += dialog.cpp main.cpp training.cpp
