@@ -25,7 +25,6 @@ private:
 signals:
   void showmainwindow();
   void trashow();
-  void recv_start();
 
 public slots:
   void finish_slot();

@@ -4,12 +4,13 @@
 Training::Training(QWidget *parent) :QWidget(parent)
 {
   textEdit = new QTextEdit();
-  QLabel *label = new QLabel(this);
-  label -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  label -> show();
+  QLabel *label1 = new QLabel(this);
+  QLabel *label2 = new QLabel("Training started !");
+  label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
   layout = new QGridLayout();
-  layout -> addWidget(label,0,0,1,3);
-  layout -> addWidget(textEdit,1,0,3,3);
+  layout -> addWidget(label1,0,0,1,3);
+  layout -> addWidget(textEdit,1,0,3,2);
+  layout -> addWidget(label2,2,2,1,1);
   setLayout(layout);
 
   setWindowTitle(tr("SLAT2000"));
