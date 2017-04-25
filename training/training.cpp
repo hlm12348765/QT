@@ -75,7 +75,7 @@ void Training::receiveshow()
 void Training::connect_slot()
 {
     //tcpSocket_connect_HBJ -> abort();
-    tcpSocket -> connectToHost("172.17.32.199",22);
+    tcpSocket -> connectToHost("172.17.32.199",23);
 }
 
 //void Training::send_slot()
