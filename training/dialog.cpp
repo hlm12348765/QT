@@ -10,17 +10,10 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle(tr("SLAT2000"));
-    //setWindowFlags(windowFlags() &~ Qt::WindowCloseButtonHint);
-    //setWindowState(Qt::WindowMaximized);
     setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
-    //QImage *image = new QImage("/opt/qt/logo.png");
 
     loginButton = new QPushButton("login");
     QLabel *label = new QLabel(this);
-    //label->setGeometry(0,0,480,100);
-    //label->setPixmap(QPixmap::fromImage(*image));
-    //label->setPixmap(QPixmap("/opt/qt/logo.png"));
-    //label->show();
     layout = new QGridLayout();
     layout -> addWidget(label,0,0,1,3);
     layout -> addWidget(loginButton,1,1);
@@ -43,24 +36,10 @@ void Dialog::closeEvent(QCloseEvent *event)
     event -> ignore();
 }
 
-//void Dialog::on_pushButton_clicked()
-//{
-//    this->hide();
-//    emit trashow();
-//}
-
-
 void Dialog::receiveshow()
 {
     this -> show();
-
 }
-
-//void Dialog::login_slot()
-//{
-//     this -> hide();
-//     emit trashow();
-//}
 
 void Dialog::connect_slot()
 {
@@ -72,7 +51,3 @@ void Dialog::finish_slot()
      this -> hide();
      emit trashow();
 }
-//void Dialog::on_pushButton_2_clicked()
-//{
- //   emit quit();
-//}

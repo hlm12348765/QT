@@ -21,19 +21,16 @@ public:
     ~Dialog();
 
 public slots:
-    //void login_slot();
     void finish_slot();
     void connect_slot();
 
 private slots:
-    //void on_pushButton_clicked();
     void receiveshow();
-    //void on_pushButton_2_clicked();
+
 signals:
     void showmainwindow();
     void trashow();
     void recv_start();
-    //void quit();
 
 private:
     Ui::Dialog *ui;

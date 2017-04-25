@@ -7,7 +7,6 @@
 #include <QtNetwork/QTcpServer>
 #include <QGridLayout>
 #include <QTextEdit>
-#include <QPushButton>
 
 namespace Ui {
 class Training;
@@ -22,7 +21,6 @@ public:
     ~Training();
 
 public slots:
-    //void send_slot();
     void recv_slot();
     void connect_slot();
 
@@ -40,8 +38,6 @@ private:
     QTcpSocket *tcpSocket_connect_HBJ;
     QGridLayout *layout;
     QTextEdit *textEdit;
-    //QPushButton *connectButton;
-    //QPushButton *sendButton;
 };
 
 #endif // TRAINING_H
