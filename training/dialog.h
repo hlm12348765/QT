@@ -8,19 +8,19 @@
 #include <QGridLayout>
 #include <QPushButton>
 
-//namespace Ui {
-//class Dialog;
-//}
-
 class Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    //explicit Dialog(QWidget *parent = 0);
-    //~Dialog();
     Dialog(QWidget *parent = 0);
     virtual ~Dialog() {}
+
+private:
+    QGridLayout *layout;
+    QPushButton *loginButton;
+    QTcpSocket *tcpSocket;
+    void closeEvent(QCloseEvent *event);
 
 public slots:
     void finish_slot();
@@ -33,15 +33,6 @@ signals:
     void showmainwindow();
     void trashow();
     void recv_start();
-
-private:
-    //Ui::Dialog *ui;
-    QGridLayout *layout;
-    QPushButton *loginButton;
-    QTcpSocket *tcpSocket;
-
-private:
-    void closeEvent(QCloseEvent *event);
 };
 
 #endif // DIALOG_H

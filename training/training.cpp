@@ -1,37 +1,25 @@
 #include <QtGui>
 #include "training.h"
-//#include "ui_training.h"
-#include <QImage>
-#include <QApplication>
 
 Training::Training(QWidget *parent) :QWidget(parent)
-//    ui(new Ui::Training)
 {
-    //ui -> setupUi(this);
-
     textEdit = new QTextEdit();
-    QLabel *label1 = new QLabel(this);
-    label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-    label1 -> show();
+    QLabel *label = new QLabel(this);
+    label -> setPixmap(QPixmap("/opt/qt/logo.png"));
+    label -> show();
     layout = new QGridLayout();
-    layout -> addWidget(label1,0,0,1,3);
+    layout -> addWidget(label,0,0,1,3);
     layout -> addWidget(textEdit,1,0,3,3);
     setLayout(layout);
 
     setWindowTitle(tr("SLAT2000"));
-    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
+    setWindowFlags(Qt::WindowTitleHint);
     resize(480, 272);
 
     tcpSocket = new QTcpSocket(this);
 
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
-
 }
-
-//Training::~Training()
-//{
-//    delete ui;
-//}
 
 void Training::closeEvent(QCloseEvent *event)
 {

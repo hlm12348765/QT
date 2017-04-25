@@ -1,14 +1,8 @@
+#include <QtGui>
 #include "dialog.h"
-//#include "ui_dialog.h"
-#include <QGridLayout>
-#include "training.h"
-#include <QLabel>
 
 Dialog::Dialog(QWidget *parent) :QDialog(parent)
-//    ui(new Ui::Dialog)
 {
-    //ui->setupUi(this);
-
     loginButton = new QPushButton("login");
     QLabel *label = new QLabel(this);
     label -> setPixmap(QPixmap("/opt/qt/logo.png"));
@@ -18,7 +12,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     setLayout(layout);
 
     setWindowTitle(tr("SLAT2000"));
-    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
+    setWindowFlags(Qt::WindowTitleHint);
     resize(480, 272);
 
     tcpSocket = new QTcpSocket(this);
@@ -26,11 +20,6 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     connect(loginButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
 }
-
-//Dialog::~Dialog()
-//{
-//    delete ui;
-//}
 
 void Dialog::closeEvent(QCloseEvent *event)
 {
