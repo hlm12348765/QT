@@ -10,29 +10,29 @@
 
 class Dialog : public QDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    Dialog(QWidget *parent = 0);
-    virtual ~Dialog() {}
+  Dialog(QWidget *parent = 0);
+  virtual ~Dialog() {}
 
 private:
-    QGridLayout *layout;
-    QPushButton *loginButton;
-    QTcpSocket *tcpSocket;
-    void closeEvent(QCloseEvent *event);
-
-public slots:
-    void finish_slot();
-    void connect_slot();
-
-private slots:
-    void receiveshow();
+  QGridLayout *layout;
+  QPushButton *loginButton;
+  QTcpSocket *tcpSocket;
+  void closeEvent(QCloseEvent *event);
 
 signals:
-    void showmainwindow();
-    void trashow();
-    void recv_start();
+  void showmainwindow();
+  void trashow();
+  void recv_start();
+
+public slots:
+  void finish_slot();
+  void connect_slot();
+
+private slots:
+  void receiveshow();
 };
 
 #endif // DIALOG_H
