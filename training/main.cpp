@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-  QApplication a(argc, argv);
+  QApplication app(argc, argv);
   Training tra;
   Dialog dlg;
   dlg.show();
@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(connect_slot()));
   QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
+  QTextCodec::setCodecForTr(QTextCodec::codecForName("GBK"));
+  QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 
-  return a.exec();
+  return app.exec();
 }

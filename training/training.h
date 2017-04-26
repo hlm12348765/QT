@@ -13,6 +13,7 @@
 #include <QtNetwork/QTcpServer>
 #include <QGridLayout>
 #include <QTextEdit>
+#include <QTextCodec>
 
 class Training : public QWidget
 {

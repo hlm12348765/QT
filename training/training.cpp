@@ -11,7 +11,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
 {
   textEdit = new QTextEdit();
   QLabel *label1 = new QLabel(this);
-  QLabel *label2 = new QLabel("Training started !");
+  QLabel *label2 = new QLabel("Training Started !");
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,3);
@@ -21,7 +21,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
 
   setWindowTitle(tr("SLAT2000"));
   setWindowFlags(Qt::WindowTitleHint);
-  resize(480, 272);
+  resize(480, 260);
 
   tcpSocket = new QTcpSocket(this);
 

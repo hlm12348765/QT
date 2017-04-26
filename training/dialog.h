@@ -13,6 +13,7 @@
 #include <QtNetwork/QTcpServer>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QTextCodec>
 
 class Dialog : public QDialog
 {
