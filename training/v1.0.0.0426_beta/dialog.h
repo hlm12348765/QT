@@ -2,39 +2,43 @@
 //Title: Training Interface for SLAT2000
 //Author: Bowen Nie
 //Date completed: April 26th
-//Version 1.0.0.0426_RC1
+//Version 1.0.0.0426_beta
 //--------------------------------------------------------
-#ifndef TRAINING_H
-#define TRAINING_H
+#ifndef DIALOG_H
+#define DIALOG_H
 
-#include <QWidget>
+#include <QDialog>
 #include <QCloseEvent>
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QTcpServer>
 #include <QGridLayout>
-#include <QTextEdit>
+#include <QPushButton>
 #include <QTextCodec>
 
-class Training : public QWidget
+class Dialog : public QDialog
 {
   Q_OBJECT
 
 public:
-  Training(QWidget *parent = 0);
-  virtual ~Training() {}
+  Dialog(QWidget *parent = 0);
+  virtual ~Dialog() {}
 
 private:
-  QTcpSocket *tcpSocket;
   QGridLayout *layout;
-  QTextEdit *textEdit;
+  QPushButton *loginButton;
+  QTcpSocket *tcpSocket;
   void closeEvent(QCloseEvent *event);
 
+signals:
+  void showmainwindow();
+  void trashow();
+
 public slots:
-  void recv_slot();
+  void finish_slot();
   void connect_slot();
 
 private slots:
   void receiveshow();
 };
 
-#endif // TRAINING_H
+#endif // DIALOG_H

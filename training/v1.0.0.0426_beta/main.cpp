@@ -2,7 +2,7 @@
 //Title: Training Interface for SLAT2000
 //Author: Bowen Nie
 //Date completed: April 26th
-//Version 1.0.0.0426_RC1
+//Version 1.0.0.0426_beta
 //--------------------------------------------------------
 #include <QApplication>
 #include <QTextCodec>
@@ -20,8 +20,6 @@ int main(int argc, char *argv[])
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(connect_slot()));
   QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
-  QTextCodec::setCodecForTr(QTextCodec::codecForName("GBK"));
-  QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 
   return app.exec();
 }
