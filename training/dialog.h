@@ -1,3 +1,9 @@
+//--------------------------------------------------------
+//Title: Training Interface for SLAT2000
+//Author: Bowen Nie
+//Date completed: April 26th
+//Version 1.0.0.0426_RC1
+//--------------------------------------------------------
 #ifndef DIALOG_H
 #define DIALOG_H
 
