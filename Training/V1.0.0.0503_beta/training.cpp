@@ -1,8 +1,8 @@
 //--------------------------------------------------------
 //Title: Training Interface for SLAT2000
 //Author: Bowen Nie
-//Date completed: May 2nd
-//Version 1.0.0.0502_beta
+//Date completed: May 3rd
+//Version 1.0.0.0503_beta
 //--------------------------------------------------------
 #include <QtGui>
 #include "training.h"
@@ -14,22 +14,19 @@ Training::Training(QWidget *parent) :QWidget(parent)
   textEdit3 = new QTextEdit();
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  QLabel *label2 = new QLabel("Trained Project");
-  QLabel *label3 = new QLabel("Trained Log");
-  QLabel *label4 = new QLabel("Student information");
+  QLabel *label2 = new QLabel(this);
+  label2 -> setPixmap(QPixmap("/opt/qt/picture.png"));
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,6);
-  layout -> addWidget(label2,1,2,1,2);
-  layout -> addWidget(label3,1,4,1,2);
-  layout -> addWidget(label4,1,0,1,2);
-  layout -> addWidget(textEdit1,2,0,2,2);
-  layout -> addWidget(textEdit2,2,2,2,2);
-  layout -> addWidget(textEdit3,2,4,2,2);
+  layout -> addWidget(label2,1,0,3,2);
+  layout -> addWidget(textEdit1,1,2,0,4);
+  layout -> addWidget(textEdit2,2,2,1,4);
+  layout -> addWidget(textEdit3,3,2,1,4);
   setLayout(layout);
 
-  setWindowTitle(tr("安徽三联SLAT2000"));
-  setWindowFlags(Qt::WindowTitleHint);
-  resize(480, 260);
+  setWindowTitle(tr("SLAT2000"));
+  setWindowFlags(Qt::FramelessWindowHint);
+  resize(480, 272);
 
   tcpSocket = new QTcpSocket(this);
 

@@ -1,31 +1,31 @@
 //--------------------------------------------------------
 //Title: Training Interface for SLAT2000
 //Author: Bowen Nie
-//Date completed: May 2nd
-//Version 1.0.0.0502_beta
+//Date completed: May 3rd
+//Version 1.0.0.0503_beta
 //--------------------------------------------------------
 #include <QtGui>
 #include "dialog.h"
 
 Dialog::Dialog(QWidget *parent) :QDialog(parent)
 {
-  loginButton = new QPushButton("login");
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  QLabel *label2 = new QLabel("Welcome Training !");
+  QLabel *label2 = new QLabel();
+  //label2 -> setText(QObject::tr("欢迎训练，请刷卡！"));
+  label2 -> setPixmap(QPixmap("/opt/qt/huanying.png"));
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,3);
   layout -> addWidget(label2,2,1,1,1);
-  layout -> addWidget(loginButton,1,1,1,1);
   setLayout(layout);
 
-  setWindowTitle(tr("安徽三联SLAT2000"));
-  setWindowFlags(Qt::WindowTitleHint);
-  resize(480, 260);
+  setWindowTitle(tr("SLAT2000"));
+  setWindowFlags(Qt::FramelessWindowHint);
+  resize(480, 272);
 
   tcpSocket = new QTcpSocket(this);
+  tcpSocket -> connectToHost("172.17.32.199",22);
 
-  connect(loginButton,SIGNAL(clicked()),this,SLOT(connect_slot()));
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
 }
 
@@ -34,15 +34,16 @@ void Dialog::receiveshow()
   this -> show();
 }
 
-void Dialog::connect_slot()
-{
-  tcpSocket -> connectToHost("172.17.32.199",22);
-}
-
 void Dialog::finish_slot()
 {
-  this -> hide();
-  emit trashow();
+  QString str;
+  str = tcpSocket -> readAll();
+  int i = str.indexOf("start");
+  if (i!=-1)
+  {
+    this -> hide();
+    emit trashow();
+  }
 }
 
 void Dialog::closeEvent(QCloseEvent *event)

@@ -1,8 +1,8 @@
 //--------------------------------------------------------
 //Title: Training Interface for SLAT2000
 //Author: Bowen Nie
-//Date completed: May 2nd
-//Version 1.0.0.0502_beta
+//Date completed: May 3rd
+//Version 1.0.0.0503_beta
 //--------------------------------------------------------
 #ifndef DIALOG_H
 #define DIALOG_H
@@ -25,7 +25,6 @@ public:
 
 private:
   QGridLayout *layout;
-  QPushButton *loginButton;
   QTcpSocket *tcpSocket;
   void closeEvent(QCloseEvent *event);
 
@@ -35,7 +34,6 @@ signals:
 
 public slots:
   void finish_slot();
-  void connect_slot();
 
 private slots:
   void receiveshow();
