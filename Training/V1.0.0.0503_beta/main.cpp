@@ -1,12 +1,10 @@
 //--------------------------------------------------------
 //Title: Training Interface for SLAT2000
 //Author: Bowen Nie
-//Date completed: April 26th
-//Version 1.0.0.0426_beta
+//Date completed: May 2nd
+//Version 1.0.0.0502_beta
 //--------------------------------------------------------
-#include <QApplication>
-#include <QTextCodec>
-#include <QLabel>
+#include <QtGui>
 #include "dialog.h"
 #include "training.h"
 
@@ -20,6 +18,6 @@ int main(int argc, char *argv[])
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(connect_slot()));
   QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
-
+  QTextCodec::setCodecForTr(QTextCodec::codecForName("GBK"));
   return app.exec();
 }

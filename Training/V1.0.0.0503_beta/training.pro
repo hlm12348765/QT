@@ -1,8 +1,8 @@
 ########################################################
 #Title: Training Interface for SLAT2000
 #Author: Bowen Nie
-#Date completed: April 26th
-#Version 1.0.0.0426_beta
+#Date completed: May 2nd
+#Version 1.0.0.0502_beta
 ########################################################
 
 TEMPLATE = app
