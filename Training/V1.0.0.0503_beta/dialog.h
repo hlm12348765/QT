@@ -29,7 +29,6 @@ private:
   void closeEvent(QCloseEvent *event);
 
 signals:
-  void showmainwindow();
   void trashow();
 
 public slots:

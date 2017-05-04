@@ -19,7 +19,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,6);
   layout -> addWidget(label2,1,0,3,2);
-  layout -> addWidget(textEdit1,1,2,0,4);
+  layout -> addWidget(textEdit1,1,2,1,4);
   layout -> addWidget(textEdit2,2,2,1,4);
   layout -> addWidget(textEdit3,3,2,1,4);
   setLayout(layout);
@@ -58,6 +58,12 @@ void Training::recv_slot()
     textEdit1 -> setPlainText(QString(str1));
     textEdit2 -> setPlainText(QString(str2));
     textEdit3 -> setPlainText(QString(str3));
+  }
+  int i = byte.indexOf("finish");
+  if (i!=-1)
+  {
+    this -> hide();
+    emit dlgshow();
   }
 }
 

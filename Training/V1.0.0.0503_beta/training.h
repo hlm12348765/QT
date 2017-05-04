@@ -31,6 +31,9 @@ private:
   QTextEdit *textEdit3;
   void closeEvent(QCloseEvent *event);
 
+signals:
+  void dlgshow();
+
 public slots:
   void recv_slot();
   void connect_slot();
