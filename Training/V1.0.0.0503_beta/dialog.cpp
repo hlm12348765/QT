@@ -11,8 +11,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
 {
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  QLabel *label2 = new QLabel();
-  //label2 -> setText(QObject::tr("欢迎训练，请刷卡！"));
+  QLabel *label2 = new QLabel(this);
   label2 -> setPixmap(QPixmap("/opt/qt/huanying.png"));
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,3);

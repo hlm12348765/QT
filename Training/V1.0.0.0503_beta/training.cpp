@@ -9,9 +9,9 @@
 
 Training::Training(QWidget *parent) :QWidget(parent)
 {
-  textEdit1 = new QTextEdit();
-  textEdit2 = new QTextEdit();
-  textEdit3 = new QTextEdit();
+  textEdit1 = new QTextEdit(this);
+  textEdit2 = new QTextEdit(this);
+  textEdit3 = new QTextEdit(this);
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
   QLabel *label2 = new QLabel(this);
