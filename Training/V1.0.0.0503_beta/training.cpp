@@ -40,7 +40,7 @@ void Training::receiveshow()
 
 void Training::connect_slot()
 {
-  tcpSocket -> connectToHost("172.17.32.199",23);
+  tcpSocket -> connectToHost("192.168.200.244",22);
 }
 
 void Training::recv_slot()
