@@ -33,6 +33,7 @@ signals:
 
 public slots:
   void finish_slot();
+  void reconnect_slot();
 
 private slots:
   void receiveshow();

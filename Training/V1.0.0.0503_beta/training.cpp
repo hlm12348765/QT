@@ -15,7 +15,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
   QLabel *label2 = new QLabel(this);
-  label2 -> setPixmap(QPixmap("/opt/qt/picture.png"));
+  label2 -> setPixmap(QPixmap("/opt/picture/image_jpg.jpg"));
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,6);
   layout -> addWidget(label2,1,0,3,2);
@@ -31,6 +31,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
   tcpSocket = new QTcpSocket(this);
 
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
+  connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(reconnect_slot()));
 }
 
 void Training::receiveshow()
@@ -40,7 +41,7 @@ void Training::receiveshow()
 
 void Training::connect_slot()
 {
-  tcpSocket -> connectToHost("192.168.200.244",22);
+  tcpSocket -> connectToHost("192.168.200.252",6666);
 }
 
 void Training::recv_slot()
@@ -62,9 +63,17 @@ void Training::recv_slot()
   int i = byte.indexOf("finish");
   if (i!=-1)
   {
+    textEdit1 -> setPlainText(" ");
+    textEdit2 -> setPlainText(" ");
+    textEdit3 -> setPlainText(" ");
     this -> hide();
     emit dlgshow();
   }
+}
+
+void Training::reconnect_slot()
+{
+  tcpSocket -> connectToHost("192.168.200.252",6666);
 }
 
 void Training::closeEvent(QCloseEvent *event)
