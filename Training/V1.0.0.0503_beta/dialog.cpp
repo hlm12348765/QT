@@ -23,10 +23,9 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
   resize(480, 272);
 
   tcpSocket = new QTcpSocket();
-  tcpSocket -> connectToHost("192.168.200.252",6666);
+  tcpSocket -> connectToHost("192.168.200.244",6666);
 
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
-  connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(reconnect_slot()));
 }
 
 void Dialog::receiveshow()
@@ -44,11 +43,6 @@ void Dialog::finish_slot()
     this -> hide();
     emit trashow();
   }
-}
-
-void Dialog::reconnect_slot()
-{
-  tcpSocket -> connectToHost("192.168.200.252",6666);
 }
 
 void Dialog::closeEvent(QCloseEvent *event)

@@ -37,7 +37,6 @@ signals:
 public slots:
   void recv_slot();
   void connect_slot();
-  void reconnect_slot();
 
 private slots:
   void receiveshow();
