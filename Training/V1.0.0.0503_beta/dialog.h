@@ -26,6 +26,7 @@ public:
 private:
   QGridLayout *layout;
   QTcpSocket *tcpSocket;
+  QPushButton *loginButton;
   void closeEvent(QCloseEvent *event);
 
 signals:
@@ -33,6 +34,7 @@ signals:
 
 public slots:
   void finish_slot();
+  void login_slot();
 
 private slots:
   void receiveshow();

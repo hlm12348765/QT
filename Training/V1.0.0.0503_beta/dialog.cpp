@@ -11,11 +11,12 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
 {
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  QLabel *label2 = new QLabel(this);
-  label2 -> setPixmap(QPixmap("/opt/qt/huanying.png"));
+  loginButton = new QPushButton("login");
+  //QLabel *label2 = new QLabel(this);
+  //label2 -> setPixmap(QPixmap("/opt/qt/huanying.png"));
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,1,3);
-  layout -> addWidget(label2,2,1,1,1);
+  layout -> addWidget(loginButton,4,1,1,1);
   setLayout(layout);
 
   setWindowTitle(tr("SLAT2000"));
@@ -25,12 +26,19 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
   tcpSocket = new QTcpSocket();
   tcpSocket -> connectToHost("192.168.200.244",6666);
 
+  connect(loginButton,SIGNAL(clicked()),this,SLOT(login_slot()));
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
 }
 
 void Dialog::receiveshow()
 {
   this -> show();
+}
+
+void Dialog::login_slot()
+{
+  QByteArray dataSend = "kaishi\n";
+  tcpSocket->write(dataSend);
 }
 
 void Dialog::finish_slot()
