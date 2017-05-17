@@ -13,7 +13,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
   textEdit2 = new QTextEdit(this);
   textEdit3 = new QTextEdit(this);
   QLabel *label1 = new QLabel(this);
-  label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
+  label1 -> setPixmap(QPixmap("/opt/qt/logo1.png"));
   QLabel *label2 = new QLabel(this);
   label2 -> setPixmap(QPixmap("/opt/picture/image_jpg.png"));
   layout = new QGridLayout();
