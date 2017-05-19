@@ -15,6 +15,9 @@
 #include <QTextEdit>
 #include <QTextCodec>
 #include <QListView>
+#include <QStandardItem>
+#include <QStandardItemModel>
+#include <QModelIndex>
 
 class Training : public QWidget
 {
@@ -35,6 +38,8 @@ private:
   QTextEdit *textEdit6;
   QListView *listview1;
   QListView *listview2;
+  QStandardItemModel *standardItemModel1;
+  QStandardItemModel *standardItemModel2;
   void closeEvent(QCloseEvent *event);
 
 signals:

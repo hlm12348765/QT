@@ -11,7 +11,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
 {
   QLabel *label1 = new QLabel(this);
   label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  loginButton = new QPushButton("login");
+  loginButton = new QPushButton(tr(""));
   //QLabel *label2 = new QLabel(this);
   //label2 -> setPixmap(QPixmap("/opt/qt/huanying.png"));
   layout = new QGridLayout();
