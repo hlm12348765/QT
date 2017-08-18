@@ -8,6 +8,7 @@
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QTcpServer>
 #include <QPushButton>
+#include <QCloseEvent>
 
 class Xuzhi : public QWidget
 {
@@ -18,7 +19,7 @@ public:
   virtual ~Xuzhi() {}
 
 private:
-  //QTcpSocket *tcpSocket;
+  QTcpSocket *tcpSocket;
   QGridLayout *layout;
   QTextEdit *textEdit1;
   QTextEdit *textEdit2;
@@ -26,6 +27,10 @@ private:
   QTextEdit *textEdit4;
   QTextEdit *textEdit5;
   QPushButton *loginButton;
+  void closeEvent(QCloseEvent *event);
+
+public slots:
+  void recv_slot();
 
 private slots:
   void receiveshow();
