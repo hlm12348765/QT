@@ -10,21 +10,21 @@
 Dialog::Dialog(QWidget *parent) :QDialog(parent)
 {
   QLabel *label1 = new QLabel(this);
-  label1 -> setPixmap(QPixmap("/opt/qt/logo.png"));
-  label1 -> setGeometry(0,0,480,272);
+  label1 -> setPixmap(QPixmap("/opt/qt/logo800.png"));
+  label1 -> setGeometry(0,0,800,480);
   label1 -> show();
   loginButton = new QPushButton(tr("login"));
-  //layout = new QGridLayout();
-  //layout -> addWidget(label1,0,0,1,3);
-  //layout -> addWidget(loginButton,1,1,1,1);
-  //setLayout(layout);
+  layout = new QGridLayout();
+  layout -> addWidget(label1,0,0,1,3);
+  layout -> addWidget(loginButton,1,1,1,1);
+  setLayout(layout);
 
   setWindowTitle(tr("SLAT2000"));
-  setWindowFlags(Qt::FramelessWindowHint);
-  resize(480, 272);
+  //setWindowFlags(Qt::FramelessWindowHint);
+  resize(800, 480);
 
   tcpSocket = new QTcpSocket();
-  tcpSocket -> connectToHost("192.168.200.244",6666);
+  tcpSocket -> connectToHost("172.17.32.133",6666);
 
   connect(loginButton,SIGNAL(clicked()),this,SLOT(login_slot()));
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
@@ -33,6 +33,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
 void Dialog::receiveshow()
 {
   this -> show();
+  tcpSocket -> connectToHost("172.17.32.133",6666);
 }
 
 void Dialog::login_slot()
@@ -48,12 +49,14 @@ void Dialog::finish_slot()
   int i = str.indexOf("start");
   if (i!=-1)
   {
-    this -> hide();
+    tcpSocket -> abort();
+    this -> close();
     emit trashow();
+    loginButton -> setText("hello");
   }
 }
 
 void Dialog::closeEvent(QCloseEvent *event)
 {
-  event -> ignore();
+  event -> accept();
 }

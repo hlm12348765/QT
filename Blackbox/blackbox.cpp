@@ -18,7 +18,7 @@ Training::Training(QWidget *parent) :QWidget(parent)
   label1 -> setPixmap(QPixmap("/opt/qt/logo1.png"));
   label1 -> setFixedSize(460, 60);
   QLabel *label2 = new QLabel(tr("Credit card to complete the training"));
-  QLabel *label3 = new QLabel(tr("学员姓名Student Name"));
+  QLabel *label3 = new QLabel(tr("Student Name"));
   QLabel *label4 = new QLabel(tr("Student Number"));
   QLabel *label5 = new QLabel(tr("Starting Time"));
   QLabel *label6 = new QLabel(tr("Current Project"));

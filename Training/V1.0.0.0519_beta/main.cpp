@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
   QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(connect_slot()));
   QObject::connect(&tra,SIGNAL(dlgshow()),&dlg,SLOT(receiveshow()));
-  QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
+  QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
   QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
   QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
   QFont font("WenQuanYi Micro Hei",12,QFont::Normal,FALSE);

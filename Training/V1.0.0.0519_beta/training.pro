@@ -6,7 +6,7 @@
 ########################################################
 
 TEMPLATE = app
-TARGET = Training
+TARGET = training
 DEPENDPATH += .
 INCLUDEPATH += .
 QT += network

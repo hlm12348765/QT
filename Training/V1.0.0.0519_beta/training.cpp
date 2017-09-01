@@ -15,14 +15,15 @@ Training::Training(QWidget *parent) :QWidget(parent)
   textEdit4 = new QTextEdit(this);
   textEdit5 = new QTextEdit(this);
   QLabel *label1 = new QLabel(this);
-  label1 -> setPixmap(QPixmap("/opt/qt/logo1.png"));
-  label1 -> setFixedSize(460, 60);
+  label1 -> setPixmap(QPixmap("/opt/qt/logo1800.png"));
+  label1 -> setFixedSize(800, 120);
   QLabel *label2 = new QLabel(tr("Credit card to complete the training"));
   QLabel *label3 = new QLabel(tr("Student Name"));
   QLabel *label4 = new QLabel(tr("Student Number"));
   QLabel *label5 = new QLabel(tr("Starting Time"));
   QLabel *label6 = new QLabel(tr("Current Project"));
-  QLabel *label7 = new QLabel(tr("Test Log"));
+  QLabel *label7 = new QLabel();
+  label7 -> setText("Test Log");
   //QLabel *label8 = new QLabel(this);
   //label8 -> setText(QString("Hours"));
   QLabel *label9 = new QLabel(tr("Student Photo"));
@@ -53,9 +54,10 @@ Training::Training(QWidget *parent) :QWidget(parent)
 
   setWindowTitle(tr("SLAT2000"));
   setWindowFlags(Qt::FramelessWindowHint);
-  resize(480, 272);
+  resize(800, 480);
 
   tcpSocket = new QTcpSocket(this);
+  tcpSocket -> abort();
 
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 }
@@ -67,7 +69,7 @@ void Training::receiveshow()
 
 void Training::connect_slot()
 {
-  tcpSocket -> connectToHost("192.168.200.244",6666);
+  tcpSocket -> connectToHost("172.17.32.133",6666);
 }
 
 void Training::recv_slot()
@@ -93,6 +95,8 @@ void Training::recv_slot()
     textEdit3 -> setPlainText(QString(str3));
     textEdit4 -> setPlainText(QString(str4));
     textEdit5 -> setPlainText(QString(str5));
+    //textEdit5 -> append("hello");
+    //label7 -> setText("nihao");
     //listview1 -> setModel(standardItemModel1);
     //listview2 -> setModel(standardItemModel2);
   }
@@ -103,13 +107,16 @@ void Training::recv_slot()
     textEdit2 -> setPlainText(" ");
     textEdit3 -> setPlainText(" ");
     textEdit4 -> setPlainText(" ");
-    textEdit5 -> setPlainText(" ");
-    this -> hide();
+    //textEdit5 -> setPlainText(" ");
+    textEdit5 -> append("finish");
+    //label7 -> setText("hello");
+    tcpSocket -> abort();
+    this -> close();
     emit dlgshow();
   }
 }
 
 void Training::closeEvent(QCloseEvent *event)
 {
-  event -> ignore();
+  event -> accept();
 }

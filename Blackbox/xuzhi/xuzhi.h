@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QGridLayout>
-#include <QTextEdit>
+#include <QLineEdit>
 #include <QTextCodec>
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QTcpServer>
@@ -21,11 +21,11 @@ public:
 private:
   QTcpSocket *tcpSocket;
   QGridLayout *layout;
-  QTextEdit *textEdit1;
-  QTextEdit *textEdit2;
-  QTextEdit *textEdit3;
-  QTextEdit *textEdit4;
-  QTextEdit *textEdit5;
+  QLineEdit *textEdit1;
+  QLineEdit *textEdit2;
+  QLineEdit *textEdit3;
+  QLineEdit *textEdit4;
+  QLineEdit *textEdit5;
   QPushButton *loginButton;
   void closeEvent(QCloseEvent *event);
 

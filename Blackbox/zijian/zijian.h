@@ -5,9 +5,12 @@
 #include <QGridLayout>
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QTcpServer>
+#include <QLineEdit>
 #include <QTextCodec>
 #include <QCheckBox>
 #include <QLabel>
+#include <QPushButton>
+#include <QPalette>
 
 class Zijian : public QWidget
 {
@@ -26,17 +29,14 @@ private:
   QLabel *label4;
   QLabel *label5;
   QLabel *label6;
-  QCheckBox *checkbox1;
-  QCheckBox *checkbox2;
-  QCheckBox *checkbox3;
-  QCheckBox *checkbox4;
-
-signals:
-  void c1show();
+  QPushButton *aqdbutton;
+  QPushButton *ssbutton;
+  QPushButton *lhbutton;
+  QPushButton *cmbutton;
+  void setAlignment(Qt::AlignmentFlag); 
 
 public slots:
   void recv_slot();
-  void change_slot();
 
 private slots:
   void receiveshow();

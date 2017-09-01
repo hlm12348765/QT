@@ -11,5 +11,10 @@ DEPENDPATH += .
 INCLUDEPATH += .
 QT += network
 
-HEADERS += dialog.h training.h
-SOURCES += dialog.cpp main.cpp training.cpp
+HEADERS += dialog.h training.h \
+    form.h
+SOURCES += dialog.cpp main.cpp training.cpp \
+    form.cpp
+
+FORMS += \
+    form.ui

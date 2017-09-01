@@ -18,6 +18,7 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QModelIndex>
+#include <QLabel>
 
 class Training : public QWidget
 {
@@ -30,6 +31,7 @@ public:
 private:
   QTcpSocket *tcpSocket;
   QGridLayout *layout;
+  QLabel *label7;
   QTextEdit *textEdit1;
   QTextEdit *textEdit2;
   QTextEdit *textEdit3;

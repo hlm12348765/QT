@@ -23,8 +23,8 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
   setWindowFlags(Qt::FramelessWindowHint);
   resize(480, 272);
 
-  tcpSocket = new QTcpSocket();
-  tcpSocket -> connectToHost("192.168.1.133",6666);
+  //tcpSocket = new QTcpSocket();
+  //tcpSocket -> connectToHost("192.168.1.133",6666);
 
   connect(loginButton,SIGNAL(clicked()),this,SLOT(login_slot()));
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(finish_slot()));
