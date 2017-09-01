@@ -8,11 +8,12 @@ Xuzhi::Xuzhi(QWidget *parent) :QWidget(parent)
   label1 -> setFixedSize(460,60);
   QLabel *label2 = new QLabel(tr("Kaoshengxuzhi"));
   label2 -> setAlignment(Qt::AlignHCenter);
-  QLabel *label3 = new QLabel(tr("IP Address"));
-  QLabel *label4 = new QLabel(tr("MAC Address"));
+  QLabel *label3 = new QLabel(tr("IP"));
+  QLabel *label4 = new QLabel(tr("MAC"));
   QLabel *label5 = new QLabel(tr("Version"));
-  QLabel *label6 = new QLabel(tr("Release Date"));
-  QLabel *label7 = new QLabel(tr("Please press the startbutton to start exam"));
+  QLabel *label6 = new QLabel(tr("Date"));
+  QLabel *label7 = new QLabel(tr("Press the startbutton"));
+
   loginButton = new QPushButton(tr("Start"));
   textEdit1 = new QLineEdit(this);
   textEdit2 = new QLineEdit(this);
@@ -22,6 +23,7 @@ Xuzhi::Xuzhi(QWidget *parent) :QWidget(parent)
   textEdit2 -> setReadOnly(true);
   textEdit3 -> setReadOnly(true);
   textEdit4 -> setReadOnly(true);
+
   layout = new QGridLayout();
   layout -> addWidget(label1,0,0,2,12);
   layout -> addWidget(label2,2,0,1,12);
@@ -42,7 +44,7 @@ Xuzhi::Xuzhi(QWidget *parent) :QWidget(parent)
   resize(480,272);
 
   tcpSocket = new QTcpSocket(this);
-  tcpSocket -> connectToHost("172.17.32.133",6666);
+  tcpSocket -> connectToHost("172.17.32.115",6666);
 
   connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 }
@@ -60,6 +62,7 @@ void Xuzhi::recv_slot()
   QString str2;
   QString str3;
   QString str4;
+  
   if (byte.startsWith("$ks") && byte.endsWith("$js"))
   {
     str1 = byte.section(";",1,1);
