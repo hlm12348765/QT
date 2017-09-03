@@ -1,31 +1,32 @@
-#include "xuzhi.h"
-#include "ui_xuzhi.h"
+#include "kaoshi.h"
+#include "ui_kaoshi.h"
 
-xuzhi::xuzhi(QWidget *parent) :
+kaoshi::kaoshi(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::xuzhi)
+    ui(new Ui::kaoshi)
 {
     ui->setupUi(this);
     this->Init();
 }
 
-xuzhi::~xuzhi()
+kaoshi::~kaoshi()
 {
     delete ui;
 }
 
-void xuzhi::Init()
+void kaoshi::Init()
 {
     ui->lineEdit1->setReadOnly(true);
     ui->lineEdit2->setReadOnly(true);
     ui->lineEdit3->setReadOnly(true);
     ui->lineEdit4->setReadOnly(true);
+    ui->lineEdit5->setReadOnly(true);
 
     setWindowFlags(Qt::FramelessWindowHint);
     tcpSocket = new QTcpSocket(this);
 }
 
-void xuzhi::receiveshow()
+void kaoshi::receiveshow()
 {
     this->show();
     tcpSocket -> connectToHost("192.168.1.107",6666);
@@ -34,38 +35,30 @@ void xuzhi::receiveshow()
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 }
 
-void xuzhi::on_button1_clicked()
-{
-    QByteArray dataSend = "qingqiukaoshi\n";
-    tcpSocket->write(dataSend);
-}
-
-void xuzhi::wllj_slot()
+void kaoshi::wllj_slot()
 {
     QPalette pal_wllj;
     pal_wllj.setColor(QPalette::Button,Qt::green);
-    ui->button2->setPalette(pal_wllj);
-    ui->button2->setAutoFillBackground(true);
-    ui->button2->setFlat(true);
-    ui->button2->setEnabled(true);
-    ui->button2->setText("已连接");
+    ui->button1->setPalette(pal_wllj);
+    ui->button1->setAutoFillBackground(true);
+    ui->button1->setFlat(true);
+    ui->button1->setEnabled(true);
+    ui->button1->setText("已连接");
 }
 
-void xuzhi::wldk_slot()
+void kaoshi::wldk_slot()
 {
     QPalette pal_wldk;
     pal_wldk.setColor(QPalette::Button,Qt::red);
-    ui->button2->setPalette(pal_wldk);
-    ui->button2->setAutoFillBackground(true);
-    ui->button2->setFlat(true);
-    ui->button2->setEnabled(false);
-    ui->button2->setText("已断开");
+    ui->button1->setPalette(pal_wldk);
+    ui->button1->setAutoFillBackground(true);
+    ui->button1->setFlat(true);
+    ui->button1->setEnabled(false);
+    ui->button1->setText("已断开");
 }
 
-void xuzhi::recv_slot()
+void kaoshi::recv_slot()
 {
-    ui->button1->setEnabled(true);
-
     QString byte;
     byte = tcpSocket -> readAll();
 
@@ -73,6 +66,7 @@ void xuzhi::recv_slot()
     QString str2;
     QString str3;
     QString str4;
+    QString str5;
 
     if (byte.startsWith("$ks") && byte.endsWith("$js"))
     {
@@ -80,18 +74,20 @@ void xuzhi::recv_slot()
         str2 = byte.section(";",2,2);
         str3 = byte.section(";",3,3);
         str4 = byte.section(";",4,4);
+        str5 = byte.section(";",5,5);
 
         ui->lineEdit1->setText(QString(str1));
         ui->lineEdit2->setText(QString(str2));
         ui->lineEdit3->setText(QString(str3));
         ui->lineEdit4->setText(QString(str4));
+        ui->lineEdit5->setText(QString(str5));
     }
 
-    int i = byte.indexOf("kaishibidui");
+    int i = byte.indexOf("kaoshijieshu");
     if (i!=-1)
     {
       tcpSocket->abort();
       this->close();
-      emit bshow();
+      emit xshow();
     }
 }

@@ -1,5 +1,5 @@
-#ifndef XUZHI_H
-#define XUZHI_H
+#ifndef KAOSHI_H
+#define KAOSHI_H
 
 #include <QWidget>
 #include <QtNetwork/QTcpSocket>
@@ -8,34 +8,30 @@
 #include <QPalette>
 
 namespace Ui {
-class xuzhi;
+class kaoshi;
 }
 
-class xuzhi : public QWidget
+class kaoshi : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit xuzhi(QWidget *parent = 0);
-    ~xuzhi();
+    explicit kaoshi(QWidget *parent = 0);
+    ~kaoshi();
 
 signals:
-    void bshow();
+    void xshow();
 
 private slots:
-    void on_button1_clicked();
     void recv_slot();
     void wllj_slot();
     void wldk_slot();
     void receiveshow();
 
 private:
-    Ui::xuzhi *ui;
+    Ui::kaoshi *ui;
     void Init();
     QTcpSocket *tcpSocket;
-
-signals:
-    void bidshow();
 };
 
-#endif // XUZHI_H
+#endif // KAOSHI_H

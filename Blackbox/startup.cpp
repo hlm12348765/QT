@@ -1,35 +1,37 @@
-#include "bidui.h"
-#include "ui_bidui.h"
+#include "startup.h"
+#include "ui_startup.h"
 
-bidui::bidui(QWidget *parent) :
+startup::startup(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::bidui)
+    ui(new Ui::startup)
 {
     ui->setupUi(this);
     this->Init();
 }
 
-bidui::~bidui()
+startup::~startup()
 {
     delete ui;
 }
 
-void bidui::Init()
+void startup::Init()
 {
     setWindowFlags(Qt::FramelessWindowHint);
     tcpSocket = new QTcpSocket(this);
-}
-
-void bidui::receiveshow()
-{
-    this->show();
     tcpSocket -> connectToHost("192.168.1.107",6666);
+
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
 }
 
-void bidui::wllj_slot()
+void startup::receiveshow()
+{
+    this->show();
+    tcpSocket -> connectToHost("192.168.1.107",6666);
+}
+
+void startup::wllj_slot()
 {
     QPalette pal_wllj;
     pal_wllj.setColor(QPalette::Button,Qt::green);
@@ -40,7 +42,7 @@ void bidui::wllj_slot()
     ui->button2->setText("已连接");
 }
 
-void bidui::wldk_slot()
+void startup::wldk_slot()
 {
     QPalette pal_wldk;
     pal_wldk.setColor(QPalette::Button,Qt::red);
@@ -51,15 +53,23 @@ void bidui::wldk_slot()
     ui->button2->setText("已断开");
 }
 
-void bidui::recv_slot()
+void startup::recv_slot()
 {
     QString str;
     str = tcpSocket -> readAll();
-    int i = str.indexOf("yunxukaoshi");
+    int i = str.indexOf("xuyao");
     if (i!=-1)
     {
       tcpSocket->abort();
       this->close();
-      emit kshow();
+      emit zshow();
+    }
+
+    int n = str.indexOf("wuxu");
+    if (n!=-1)
+    {
+      tcpSocket->abort();
+      this->close();
+      emit xshow();
     }
 }

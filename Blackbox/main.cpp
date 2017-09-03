@@ -1,27 +1,36 @@
-//--------------------------------------------------------
-//Title: Examing Interface for Blackbox
-//Author: Bowen Nie
-//Date completed: August 7th
-//Version 1.0.0.0807_beta
-//--------------------------------------------------------
-#include <QtGui>
-#include "dialog.h"
-#include "training.h"
+#include "startup.h"
+#include "zijian.h"
+#include "xuzhi.h"
+#include "bidui.h"
+#include "kaoshi.h"
+#include <QApplication>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
-  QApplication app(argc, argv);
-  Training tra;
-  Dialog dlg;
-  dlg.show();
+    QApplication a(argc, argv);
+    QTranslator translator;
+    translator.load(":/qt_zh_CN.qm");
+    a.installTranslator(&translator);
+    startup s;
+    zijian z;
+    xuzhi x;
+    bidui b;
+    kaoshi k;
+    s.show();
 
-  QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(receiveshow()));
-  QObject::connect(&dlg,SIGNAL(trashow()),&tra,SLOT(connect_slot()));
-  QObject::connect(&tra,SIGNAL(dlgshow()),&dlg,SLOT(receiveshow()));
-  QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
-  QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
-  QFont font("WenQuanYi Micro Hei",12,QFont::Normal,FALSE);
-  app.setFont(font);
-  return app.exec();
+    QObject::connect(&s,SIGNAL(zshow()),&z,SLOT(receiveshow()));
+    QObject::connect(&s,SIGNAL(xshow()),&x,SLOT(receiveshow()));
+    QObject::connect(&z,SIGNAL(xshow()),&x,SLOT(receiveshow()));
+    QObject::connect(&x,SIGNAL(bshow()),&b,SLOT(receiveshow()));
+    QObject::connect(&b,SIGNAL(kshow()),&k,SLOT(receiveshow()));
+    QObject::connect(&k,SIGNAL(xshow()),&x,SLOT(receiveshow()));
+
+    QTextCodec *codec=QTextCodec::codecForName("UTF-8");
+    QTextCodec::setCodecForLocale(codec);
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForTr(codec);
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GBK"));
+
+    return a.exec();
 }

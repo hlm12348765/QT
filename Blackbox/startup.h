@@ -1,5 +1,5 @@
-#ifndef BIDUI_H
-#define BIDUI_H
+#ifndef STARTUP_H
+#define STARTUP_H
 
 #include <QWidget>
 #include <QtNetwork/QTcpSocket>
@@ -8,24 +8,25 @@
 #include <QPalette>
 
 namespace Ui {
-class bidui;
+class startup;
 }
 
-class bidui : public QWidget
+class startup : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit bidui(QWidget *parent = 0);
-    ~bidui();
+    explicit startup(QWidget *parent = 0);
+    ~startup();
 
 private:
-    Ui::bidui *ui;
+    Ui::startup *ui;
     void Init();
     QTcpSocket *tcpSocket;
 
 signals:
-    void kshow();
+    void zshow();
+    void xshow();
 
 private slots:
     void recv_slot();
@@ -34,4 +35,4 @@ private slots:
     void receiveshow();
 };
 
-#endif // BIDUI_H
+#endif // STARTUP_H
