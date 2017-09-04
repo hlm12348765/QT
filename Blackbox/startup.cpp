@@ -18,7 +18,7 @@ void startup::Init()
 {
     setWindowFlags(Qt::FramelessWindowHint);
     tcpSocket = new QTcpSocket(this);
-    tcpSocket -> connectToHost("192.168.1.107",6666);
+    tcpSocket -> connectToHost("172.17.32.199",6666);
 
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
@@ -28,7 +28,7 @@ void startup::Init()
 void startup::receiveshow()
 {
     this->show();
-    tcpSocket -> connectToHost("192.168.1.107",6666);
+    tcpSocket -> connectToHost("172.17.32.199",6666);
 }
 
 void startup::wllj_slot()
@@ -51,6 +51,7 @@ void startup::wldk_slot()
     ui->button2->setFlat(true);
     ui->button2->setEnabled(false);
     ui->button2->setText("已断开");
+    tcpSocket -> connectToHost("172.17.32.199",6666);
 }
 
 void startup::recv_slot()

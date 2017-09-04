@@ -29,7 +29,7 @@ void kaoshi::Init()
 void kaoshi::receiveshow()
 {
     this->show();
-    tcpSocket -> connectToHost("192.168.1.107",6666);
+    tcpSocket -> connectToHost("172.17.32.199",6666);
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));

@@ -10,8 +10,7 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += bidui.h kaoshi.h startup.h xuzhi.h zijian.h \
-    zijian.h
+HEADERS += bidui.h kaoshi.h startup.h xuzhi.h zijian.h
 FORMS += bidui.ui kaoshi.ui startup.ui xuzhi.ui zijian.ui
 SOURCES += bidui.cpp kaoshi.cpp main.cpp startup.cpp xuzhi.cpp zijian.cpp
 
