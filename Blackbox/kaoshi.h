@@ -6,6 +6,8 @@
 #include <QtNetwork/QTcpServer>
 #include <QTextCodec>
 #include <QPalette>
+#include <QDir>
+#include <QList>
 
 namespace Ui {
 class kaoshi;

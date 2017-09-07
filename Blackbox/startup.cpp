@@ -51,7 +51,6 @@ void startup::wldk_slot()
     ui->button2->setFlat(true);
     ui->button2->setEnabled(false);
     ui->button2->setText("已断开");
-    tcpSocket -> connectToHost("172.17.32.199",6666);
 }
 
 void startup::recv_slot()
@@ -69,7 +68,7 @@ void startup::recv_slot()
     int n = str.indexOf("wuxu");
     if (n!=-1)
     {
-      tcpSocket->abort();
+      delete tcpSocket;
       this->close();
       emit xshow();
     }

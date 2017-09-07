@@ -1,5 +1,10 @@
 #include "xuzhi.h"
 #include "ui_xuzhi.h"
+#include <QBuffer>
+#include <QHostAddress>
+#include <QHostInfo>
+#include <QNetworkInterface>
+#include <QProcess>
 
 xuzhi::xuzhi(QWidget *parent) :
     QWidget(parent),
@@ -16,28 +21,102 @@ xuzhi::~xuzhi()
 
 void xuzhi::Init()
 {
-    ui->lineEdit1->setReadOnly(true);
-    ui->lineEdit2->setReadOnly(true);
-    ui->lineEdit3->setReadOnly(true);
-    ui->lineEdit4->setReadOnly(true);
-
     setWindowFlags(Qt::FramelessWindowHint);
-    tcpSocket = new QTcpSocket(this);
+    //tcpSocket = new QTcpSocket(this);
+}
+
+static QString getIP()
+{
+    QString IP;
+    QList<QHostAddress> ipAddressesList = QNetworkInterface::allAddresses();
+
+    for (int i = 0; i < ipAddressesList.size(); ++i)
+    {
+        if (ipAddressesList.at(i) != QHostAddress::LocalHost &&
+        ipAddressesList.at(i).toIPv4Address())
+        {
+            IP = ipAddressesList.at(i).toString();
+            break;
+        }
+    }
+
+    if (IP.isEmpty())
+        IP = QHostAddress(QHostAddress::LocalHost).toString();
+    return IP;
+}
+
+static QString getMAC()
+{
+    QList<QNetworkInterface> nets = QNetworkInterface::allInterfaces();
+    int nCnt = nets.count();
+    QString strMacAddr = "";
+    for(int i = 0; i < nCnt; i ++)
+    {
+        if(nets[i].flags().testFlag(QNetworkInterface::IsUp) && nets[i].flags().testFlag(QNetworkInterface::IsRunning) && !nets[i].flags().testFlag(QNetworkInterface::IsLoopBack))
+        {
+            strMacAddr = nets[i].hardwareAddress();
+            break;
+        }
+    }
+    return strMacAddr;
+}
+
+static QString getVersion()
+{
+    QString str1;
+    QString version;
+    QFile file("qrc/version");
+
+    if (file.open(QIODevice ::ReadOnly | QIODevice ::Text))
+    {
+        QTextStream textStream(&file);
+        while (!textStream.atEnd())
+        {
+            str1 = textStream.readLine();
+            version = str1.section(";",1,1);
+        }
+    }
+    return version;
+}
+
+static QString getDate()
+{
+    QString str2;
+    QString date;
+    QFile file("qrc/version");
+
+    if (file.open(QIODevice ::ReadOnly | QIODevice ::Text))
+    {
+        QTextStream textStream(&file);
+        while (!textStream.atEnd())
+        {
+            str2 = textStream.readLine();
+            date = str2.section(";",2,2);
+        }
+    }
+    return date;
 }
 
 void xuzhi::receiveshow()
 {
     this->show();
+    tcpSocket = new QTcpSocket(this);
     tcpSocket -> connectToHost("172.17.32.199",6666);
+
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
+
+    ui->button3->setText(getIP());
+    ui->button4->setText(getMAC());
+    ui->button5->setText(getVersion());
+    ui->button6->setText(getDate());
 }
 
 void xuzhi::on_button1_clicked()
 {
     QByteArray dataSend = "qingqiukaoshi\n";
-    tcpSocket->write(dataSend);
+    tcpSocket->write(dataSend);   
 }
 
 void xuzhi::wllj_slot()
@@ -68,24 +147,6 @@ void xuzhi::recv_slot()
 
     QString byte;
     byte = tcpSocket -> readAll();
-
-    QString str1;
-    QString str2;
-    QString str3;
-    QString str4;
-
-    if (byte.startsWith("$ks") && byte.endsWith("$js"))
-    {
-        str1 = byte.section(";",1,1);
-        str2 = byte.section(";",2,2);
-        str3 = byte.section(";",3,3);
-        str4 = byte.section(";",4,4);
-
-        ui->lineEdit1->setText(QString(str1));
-        ui->lineEdit2->setText(QString(str2));
-        ui->lineEdit3->setText(QString(str3));
-        ui->lineEdit4->setText(QString(str4));
-    }
 
     int i = byte.indexOf("kaishibidui");
     if (i!=-1)

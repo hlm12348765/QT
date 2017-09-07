@@ -29,13 +29,14 @@ void zijian::Init()
     ui->button11->setEnabled(false);
 
     setWindowFlags(Qt::FramelessWindowHint);
-    tcpSocket = new QTcpSocket(this);
 }
 
 void zijian::receiveshow()
 {
     this->show();
+    tcpSocket = new QTcpSocket(this);
     tcpSocket -> connectToHost("172.17.32.199",6666);
+
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
@@ -110,7 +111,7 @@ void zijian::recv_slot()
         ui->button1->setText("异常");
     }
 
-    int i2 = byte.indexOf("ss");
+    int i2 = byte.indexOf("shsh");
     if (i2!=-1)
     {
         pal_ss.setColor(QPalette::Button,Qt::white);
@@ -121,7 +122,7 @@ void zijian::recv_slot()
         ui->button2->setEnabled(true);
     }
 
-    int n2 = byte.indexOf("ss_pass");
+    int n2 = byte.indexOf("shsh_pass");
     if (n2!=-1)
     {
         pal_ss.setColor(QPalette::Button,Qt::green);
@@ -131,7 +132,7 @@ void zijian::recv_slot()
         ui->button2->setText("通过");
     }
 
-    int s2 = byte.indexOf("ss_fail");
+    int s2 = byte.indexOf("shsh_fail");
     if (s2!=-1)
     {
         pal_ss.setColor(QPalette::Button,Qt::red);
@@ -392,7 +393,7 @@ void zijian::recv_slot()
     int t = byte.indexOf("jinruxuzhi");
     if (t!=-1)
     {
-        tcpSocket->abort();
+        delete tcpSocket;
         this->close();
         emit xshow();
     }

@@ -23,16 +23,30 @@ void kaoshi::Init()
     ui->lineEdit5->setReadOnly(true);
 
     setWindowFlags(Qt::FramelessWindowHint);
-    tcpSocket = new QTcpSocket(this);
 }
 
 void kaoshi::receiveshow()
 {
     this->show();
+    tcpSocket = new QTcpSocket(this);
     tcpSocket -> connectToHost("172.17.32.199",6666);
+
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
+
+    QDir dir("qrc/");
+    QStringList filters;
+    filters <<"*.jpg";
+    dir.setNameFilters(filters);
+    QFileInfoList list = dir.entryInfoList();
+
+    if(list.length()!=0)
+    for (int i = 0; i < list.size(); ++i)
+    {
+        QPixmap img("qrc/"+list.at(0).fileName());
+        ui->label3->setPixmap(QPixmap(img));
+    }
 }
 
 void kaoshi::wllj_slot()
@@ -86,7 +100,7 @@ void kaoshi::recv_slot()
     int i = byte.indexOf("kaoshijieshu");
     if (i!=-1)
     {
-      tcpSocket->abort();
+      delete tcpSocket;
       this->close();
       emit xshow();
     }

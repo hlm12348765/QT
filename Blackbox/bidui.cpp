@@ -17,13 +17,14 @@ bidui::~bidui()
 void bidui::Init()
 {
     setWindowFlags(Qt::FramelessWindowHint);
-    tcpSocket = new QTcpSocket(this);
 }
 
 void bidui::receiveshow()
 {
     this->show();
+    tcpSocket = new QTcpSocket(this);
     tcpSocket -> connectToHost("172.17.32.199",6666);
+
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(wllj_slot()));
     connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(wldk_slot()));
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(recv_slot()));
@@ -38,6 +39,27 @@ void bidui::wllj_slot()
     ui->button2->setFlat(true);
     ui->button2->setEnabled(true);
     ui->button2->setText("已连接");
+
+    QDir dir("qrc/");
+    QStringList filters;
+    filters <<"*.jpg";
+    dir.setNameFilters(filters);
+    QFileInfoList list = dir.entryInfoList();
+
+    if(list.length()!=0)
+    for (int i = 0; i < list.size(); ++i)
+    {
+        QPixmap img0("qrc/"+list.at(0).fileName());
+        QPixmap img1("qrc/"+list.at(1).fileName());
+        QPixmap img2("qrc/"+list.at(2).fileName());
+        ui->label3->setPixmap(QPixmap(img0));
+        ui->label4->setPixmap(QPixmap(img1));
+        ui->label5->setPixmap(QPixmap(img2));
+    }
+    else
+    {
+        qDebug()<<"no file";
+    }
 }
 
 void bidui::wldk_slot()
@@ -58,7 +80,7 @@ void bidui::recv_slot()
     int i = str.indexOf("yunxukaoshi");
     if (i!=-1)
     {
-      tcpSocket->abort();
+      delete tcpSocket;
       this->close();
       emit kshow();
     }

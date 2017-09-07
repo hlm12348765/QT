@@ -229,8 +229,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_blackbox.cpp
 qrc_blackbox.cpp: blackbox.qrc \
 		qrc/logo.png \
-		qrc/qt_zh_CN.qm \
-		qrc/wxslogo.png
+		qrc/qt_zh_CN.qm 
 	/usr/lib/x86_64-linux-gnu/qt4/bin/rcc -name blackbox blackbox.qrc -o qrc_blackbox.cpp
 
 compiler_image_collection_make_all: qmake_image_collection.cpp

@@ -6,6 +6,13 @@
 #include <QtNetwork/QTcpServer>
 #include <QTextCodec>
 #include <QPalette>
+#include <QHostAddress>
+#include <QHostInfo>
+#include <QNetworkInterface>
+#include <QProcess>
+#include <QList>
+#include <QFile>
+#include <QTextStream>
 
 namespace Ui {
 class xuzhi;
@@ -33,6 +40,7 @@ private:
     Ui::xuzhi *ui;
     void Init();
     QTcpSocket *tcpSocket;
+
 
 signals:
     void bidshow();
