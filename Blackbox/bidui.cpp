@@ -58,7 +58,9 @@ void bidui::wllj_slot()
     }
     else
     {
-        qDebug()<<"no file";
+        ui->label3->setText("没有照片");
+        ui->label4->setText("没有照片");
+        ui->label5->setText("没有照片");
     }
 }
 

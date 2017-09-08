@@ -16,12 +16,6 @@ kaoshi::~kaoshi()
 
 void kaoshi::Init()
 {
-    ui->lineEdit1->setReadOnly(true);
-    ui->lineEdit2->setReadOnly(true);
-    ui->lineEdit3->setReadOnly(true);
-    ui->lineEdit4->setReadOnly(true);
-    ui->lineEdit5->setReadOnly(true);
-
     setWindowFlags(Qt::FramelessWindowHint);
 }
 
@@ -46,6 +40,10 @@ void kaoshi::receiveshow()
     {
         QPixmap img("qrc/"+list.at(0).fileName());
         ui->label3->setPixmap(QPixmap(img));
+    }
+    else
+    {
+        ui->label3->setText("没有照片");
     }
 }
 
@@ -90,11 +88,11 @@ void kaoshi::recv_slot()
         str4 = byte.section(";",4,4);
         str5 = byte.section(";",5,5);
 
-        ui->lineEdit1->setText(QString(str1));
-        ui->lineEdit2->setText(QString(str2));
-        ui->lineEdit3->setText(QString(str3));
-        ui->lineEdit4->setText(QString(str4));
-        ui->lineEdit5->setText(QString(str5));
+        ui->button2->setText(QString(str1));
+        ui->button3->setText(QString(str2));
+        ui->button4->setText(QString(str3));
+        ui->button5->setText(QString(str4));
+        ui->button6->setText(QString(str5));
     }
 
     int i = byte.indexOf("kaoshijieshu");
