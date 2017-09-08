@@ -42,6 +42,8 @@ static QString getIP()
 
     if (IP.isEmpty())
         IP = QHostAddress(QHostAddress::LocalHost).toString();
+    QString a = "***";
+    IP.replace(10,3,a);
     return IP;
 }
 
@@ -58,6 +60,8 @@ static QString getMAC()
             break;
         }
     }
+    QString b = "**:**";
+    strMacAddr.replace(12,5,b);
     return strMacAddr;
 }
 
