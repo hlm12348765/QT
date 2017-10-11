@@ -16,3 +16,5 @@ SOURCES += bidui.cpp kaoshi.cpp main.cpp startup.cpp xuzhi.cpp zijian.cpp
 
 RESOURCES += \
     blackbox.qrc
+
+DISTFILES +=
