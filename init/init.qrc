@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qrc/logo.png</file>
+        <file>qrc/qt_zh_CN.qm</file>
+        <file>qrc/version</file>
+        <file>qrc/wuxi_logo.png</file>
+    </qresource>
+</RCC>
